@@ -1,7 +1,7 @@
 #!/bin/bash
-read -p "ENTER to continue "
+read -p  "Arch install completed,are you ready ? let's config your arch !"
 
-##必要设置
+##local set
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hwclock --systohc --utc
 echo zh_CN.UTF-8 UTF-8 > /etc/locale.gen
@@ -11,7 +11,8 @@ read -p "Input your hostname:  " HOSTNAME
 echo $HOSTNAME  > /etc/hostname
 echo Change your root passwd
 passwd
-##安装引导
+
+##Install grub
 # read -p "Are you efi ? (y or Enter  " TMP
 # if (("$TMP"=="y"))
 # then TMP=n
@@ -29,7 +30,7 @@ passwd
 #     done
 # fi
 
-##安装显卡驱动
+##Install video driver
 TMP=n
 while [ "$TMP" == n ];do
     VIDEO=5
@@ -87,7 +88,7 @@ while [ "$TMP" == n ];do
     read -p "Successfully installed ? (n or Enter  " TMP
 done
 
-##安装必要软件/简单配置
+##Install blooth 
 echo "[archlinuxcn]
 Server = http://mirrors.163.com/archlinux-cn/\$arch" >> /etc/pacman.conf
 TMP=n
@@ -102,7 +103,7 @@ do
     read -p "Successfully installed ? (n or Enter  " TMP
 done
 
-##安装桌面环境
+##Install desktop environment
 TMP=n
 while [ "$TMP" == n ];do
     echo -e "\033[31m Which desktop you want to install :  \033[0m"
@@ -147,7 +148,7 @@ while [ "$TMP" == n ];do
     read -p "Successfully installed ? (n or Enter  " TMP
 done
 
-##建立用户
+##Create user
 read -p "Input the user name you want to use :  " USER
 useradd -m -g wheel $USER
 passwd $USER
@@ -167,7 +168,7 @@ fi
 
 sed -i 's/\# \%wheel ALL=(ALL) ALL/\%wheel ALL=(ALL) ALL/g' /etc/sudoers
 
-##自定义
-read -p "ENTER TO RUN YOUR OWN COMMAND(Input exit To Quit)"
+## your‘ time
+read -p "Enter quit"
 bash
-echo "Thanks For Using , If This Helped You Please Star It"
+echo "I am zack，think’s."
